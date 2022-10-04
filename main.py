@@ -51,7 +51,9 @@ def build_cache():
         symbol_lwr = coinobj['symbol'].lower()
         current_price = coinobj['quote']['USD']['price']
         ath = None
-        if symbol_lwr in ath_dict and ath_dict[symbol_lwr] > current_price:
+        # If the current price is atleast 5% more than previous ATH, then set a new ATH. 
+        # We use the 5% to avoid frequent writes for incremental price highs when the price is moving up.
+        if symbol_lwr in ath_dict and (ath_dict[symbol_lwr]*1.05) > current_price: 
             ath = ath_dict[symbol_lwr]
         else:
             # current price is highest and we also need to record this in the ath.json
