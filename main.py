@@ -41,9 +41,6 @@ def build_cache():
         is_ath_stale = True
         ath_dict = json.load(open('ath_seed.json'))
     
-    
-
-
     print("Building cache from cmc data")
     response = requests.get(CMC_URL, headers={"Accept":"application/json", "X-CMC_PRO_API_KEY": get_secret_data('CMC_API_KEY')})
     data = response.text
