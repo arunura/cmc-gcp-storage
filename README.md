@@ -3,7 +3,7 @@ This GCP App engine program gets market info from CoinMarketCap (on a schedule o
 
 ## Requirements
 1. CoinMarketCap API (Free version is sufficient for making a request every 30 mins).
-2. GCP account and project setup, with **secrets manager** and **storage** APIs enabled.
+2. GCP account and project setup, with _**secrets manager**_ and _**storage**_ APIs enabled.
 3. Cloud console (or gcloud) for deploying the app.
 
 ## Setup
