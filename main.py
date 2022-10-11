@@ -1,6 +1,8 @@
 from flask import Flask
+from flask import request
 import requests
 import json
+from rssfeed import get_materialized_body
 from google.cloud import storage, secretmanager
 import os
 
@@ -25,6 +27,15 @@ def hello():
     #for k, v in os.environ.items():
     #    print(f'{k}={v}')
     return 'Hello World!'
+
+@app.route('/rss/')
+def get_rss():
+    if 'feed' not in request.args:
+        return "The feed parameter is missing. No action taken"
+    feed = request.args.get('feed')
+    if (not feed.startswith('http://')) and (not feed.startswith('https://')):
+        feed = 'https://' + feed
+    return get_materialized_body(feed)
 
 @app.route('/cron')
 def build_cache():
