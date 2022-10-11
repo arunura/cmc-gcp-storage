@@ -2,3 +2,5 @@ Flask==2.1.0
 requests==2.28.*
 google-cloud-storage
 google-cloud-secret-manager
+beautifulsoup4
+charset-normalizer
