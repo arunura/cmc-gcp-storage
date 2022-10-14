@@ -3,23 +3,14 @@ from flask import request
 import requests
 import json
 from rssfeed import get_materialized_body
-from google.cloud import storage, secretmanager
-import os
+from google.cloud import storage
+from secrets import get_secret_data
 
 # If `entrypoint` is not defined in app.yaml, App Engine will look for an app
 # called `app` in `main.py`.
 app = Flask(__name__)
 
 CMC_URL = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?start=1&limit=1000&convert=USD'
-PROJECT_ID = os.environ.get('GOOGLE_CLOUD_PROJECT')
-
-def get_secret_data(key):
-    client = secretmanager.SecretManagerServiceClient()
-    secret_detail = 'projects/' + PROJECT_ID + '/secrets/' + key + '/versions/latest' 
-    response = client.access_secret_version(request={"name": secret_detail})
-    data = response.payload.data.decode("UTF-8")
-    # print("Data: {}".format(data))
-    return data
 
 @app.route('/')
 def hello():
