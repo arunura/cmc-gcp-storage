@@ -29,7 +29,7 @@ def home():
         </style>
     </head>
     <body>
-        <h2>Welcome to the tools page</h2>
+        <h2>Welcome to the tools page!</h2>
     </body>
 </html>
     '''
