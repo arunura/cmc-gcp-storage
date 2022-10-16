@@ -13,11 +13,26 @@ app = Flask(__name__)
 CMC_URL = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?start=1&limit=1000&convert=USD'
 
 @app.route('/')
-def hello():
+def home():
     """Return a friendly HTTP greeting."""
     #for k, v in os.environ.items():
     #    print(f'{k}={v}')
-    return 'Hello World!'
+    return '''
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Tools</title>
+        <style>
+        body {
+        margin-left: 30px;
+        }
+        </style>
+    </head>
+    <body>
+        <h2>Welcome to the tools page</h2>
+    </body>
+</html>
+    '''
 
 @app.route('/rss/')
 def get_rss():
