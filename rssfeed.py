@@ -23,7 +23,7 @@ def get_materialized_body(url: str):
     channelEL.append(ttlEL)
 
     storage_client = storage.Client()
-    bucket = storage_client.bucket(get_secret_data('CMC_BUCKET_NAME'))
+    bucket = storage_client.bucket(get_secret_data('CRYPTO_BUCKET_NAME'))
     articles_blob = bucket.blob('rss_articles.json')
     
     # Prepping all time high dictionary
