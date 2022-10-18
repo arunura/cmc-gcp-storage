@@ -40,7 +40,7 @@ def get_rss():
         feed = 'https://' + feed
     return get_materialized_body(feed)
 
-@app.route('/cron')
+@app.route('/cron_cmc')
 def trigger_build_cache():
     res_count = build_cache_from_cmc()
     return 'Cache build complete with ' + str(res_count) + ' records.'
