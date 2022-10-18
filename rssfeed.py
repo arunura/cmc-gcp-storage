@@ -5,7 +5,7 @@ from google.cloud import storage, secretmanager
 import json
 import time
 from charset_normalizer import detect
-from secrets import get_secret_data
+from common import get_secret_data, get_crypto_bucket
 
 response_headers = {
     'Content-Type': 'application/xml'
@@ -22,8 +22,7 @@ def get_materialized_body(url: str):
     channelEL = rootEL.find('channel')
     channelEL.append(ttlEL)
 
-    storage_client = storage.Client()
-    bucket = storage_client.bucket(get_secret_data('CRYPTO_BUCKET_NAME'))
+    bucket = get_crypto_bucket()
     articles_blob = bucket.blob('rss_articles.json')
     
     # Prepping all time high dictionary
