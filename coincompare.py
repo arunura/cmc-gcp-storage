@@ -18,10 +18,9 @@ def build_cache_from_coincompare():
         sym_blob = bucket.blob('history/' + symbol + '.json')
         sym_blob.upload_from_string(json.dumps(sym_data_obj, indent=4))
         time.sleep(0.1) # Chill, don't overload their API endpoint
-        break
-
 
 def get_data_for_symbol(symbol):
+    print("Processing historic data build for symbol: " + symbol)
     response = requests.get(CC_URL + symbol, headers={"Accept":"application/json"})
     data = response.text
     days_list = json.loads(data)['Data']
