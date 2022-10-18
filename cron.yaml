@@ -5,3 +5,9 @@ cron:
     retry_parameters:
       min_backoff_seconds: 10
       max_doublings: 5
+  - description: "Build JSON with historic prices data for selected crypto currencies."
+    url: /cron_history_cc
+    schedule: every day 23:30
+    retry_parameters:
+      min_backoff_seconds: 10
+      max_doublings: 5

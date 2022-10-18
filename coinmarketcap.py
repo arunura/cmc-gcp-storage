@@ -1,13 +1,12 @@
 from google.cloud import storage
-from secrets import get_secret_data
+from common import get_secret_data, get_crypto_bucket
 import json
 import requests
 
 CMC_URL = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?start=1&limit=1000&convert=USD'
 
 def build_cache_from_cmc():
-    storage_client = storage.Client()
-    bucket = storage_client.bucket(get_secret_data('CRYPTO_BUCKET_NAME'))
+    bucket = get_crypto_bucket()
     ath_blob = bucket.blob('ath.json')
     
     # Prepping all time high dictionary

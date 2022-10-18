@@ -2,6 +2,7 @@ from flask import Flask
 from flask import request
 from rssfeed import get_materialized_body
 from coinmarketcap import build_cache_from_cmc
+from coincompare import build_cache_from_coincompare
 
 # If `entrypoint` is not defined in app.yaml, App Engine will look for an app
 # called `app` in `main.py`.
@@ -44,6 +45,11 @@ def get_rss():
 def trigger_build_cache():
     res_count = build_cache_from_cmc()
     return 'Cache build complete with ' + str(res_count) + ' records.'
+
+@app.route('/cron_history_cc')
+def trigger_build_coin_price_history():
+    build_cache_from_coincompare()
+    return 'Historic coin prices data is now ready.'
 
 if __name__ == '__main__':
     # This is used when running locally only. When deploying to Google App
