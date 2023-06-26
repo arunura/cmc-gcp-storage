@@ -23,11 +23,11 @@ def build_cache_from_amfi():
             scheme_code = int(parts[0])
             if scheme_code in in_scope:
                 res_obj = {}
-                res_obj['fund_house'] = latest_fund_house
                 res_obj['scheme_code'] = scheme_code
                 res_obj['isin'] = parts[1]
                 res_obj['scheme_name'] = parts[3]
                 res_obj['net_asset_value'] = float(parts[4])
+                res_obj['fund_house'] = latest_fund_house
                 res_obj['date'] =  parts[5].strip()
                 results_array.append(res_obj)
         elif len(line) > 5:
