@@ -3,9 +3,12 @@ import json
 import requests
 
 def build_cache_from_amfi():
+    print("Fetching list of schemes of interest...")
     bucket = get_crypto_bucket()
     mf_of_interest_blob = bucket.blob('india_mf_of_interest.json')
-    in_scope = json.loads(mf_of_interest_blob.download_as_string())
+    mf_of_int_str = mf_of_interest_blob.download_as_string()
+    print(mf_of_int_str)
+    in_scope = json.loads(mf_of_int_str)
 
     print("Building cache from amfi data...")
     response = requests.get("https://www.amfiindia.com/spages/NAVAll.txt")
