@@ -13,7 +13,9 @@ cron:
       max_doublings: 5
   - description: "Build JSON with India MF Nav data for selected schemes."
     url: /cron_india_mf_nav
-    schedule: every day 20:00
+    schedule: every 1 hours from 21:15 to 23:00
+    timezone: Asia/Kolkata
     retry_parameters:
       min_backoff_seconds: 10
       max_doublings: 5
+
