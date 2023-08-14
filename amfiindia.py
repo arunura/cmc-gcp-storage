@@ -33,6 +33,7 @@ def build_cache_from_amfi():
         elif len(line) > 5:
             latest_fund_house = line.strip()
     print("AMFI results parsed successfully with " + str(len(results_array)) + " records out of " + str(len(in_scope)) + " schemes of interest.")
+    results_array.sort(key=lambda fund: fund['scheme_code'])
     results_str = json.dumps(results_array, indent=4)
     blob = bucket.blob('india_mf_nav.json')
     blob.upload_from_string(results_str)
