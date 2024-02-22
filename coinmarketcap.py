@@ -3,7 +3,7 @@ from common import get_secret_data, get_crypto_bucket
 import json
 import requests
 
-CMC_URL = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?start=1&limit=1000&convert=USD'
+CMC_URL = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?start=1&limit=1200&convert=USD'
 
 def build_cache_from_cmc():
     bucket = get_crypto_bucket()
