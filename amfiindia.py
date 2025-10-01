@@ -1,18 +1,12 @@
 from common import get_crypto_bucket
 import json
 import requests
+import sys
 
-def build_cache_from_amfi():
-    print("Fetching list of schemes of interest...")
-    bucket = get_crypto_bucket()
-    mf_of_interest_blob = bucket.blob('india_mf_of_interest.json')
-    mf_of_int_str = mf_of_interest_blob.download_as_string()
-    print(mf_of_int_str)
-    in_scope = json.loads(mf_of_int_str)
+#AMFI_INDIA_URL = "https://www.amfiindia.com/spages/NAVAll.txt"
+AMFI_INDIA_URL = "https://web.archive.org/web/20250911184638if_/https://www.amfiindia.com/spages/NAVAll.txt"
 
-    print("Building cache from amfi data...")
-    response = requests.get("https://www.amfiindia.com/spages/NAVAll.txt")
-    data = response.text
+def process_and_upload_amfi_data(data, in_scope, bucket):
     lines = data.split("\n")
     results_array = []
     latest_fund_house = None
@@ -42,3 +36,22 @@ def build_cache_from_amfi():
     blob.patch()
     print('Results data uploaded to google cloud storage bucket')
     return len(results_array)
+
+def build_cache_from_amfi():
+    print("Fetching list of schemes of interest...")
+    bucket = get_crypto_bucket()
+    mf_of_interest_blob = bucket.blob('india_mf_of_interest.json')
+    mf_of_int_str = mf_of_interest_blob.download_as_string()
+    print(mf_of_int_str)
+    in_scope = json.loads(mf_of_int_str)
+
+    print("Building cache from amfi data...")
+    try:
+        response = requests.get(AMFI_INDIA_URL, timeout=10)
+        if response.status_code != 200 or not response.text.strip():
+            raise RuntimeError(f"Failed to fetch AMFI data. Status code: {response.status_code}")
+    except Exception as e:
+        print(f"Exception occurred while fetching AMFI data: {e}")
+        raise  # Let AppEngine handle/log the error
+
+    return process_and_upload_amfi_data(response.text, in_scope, bucket)
