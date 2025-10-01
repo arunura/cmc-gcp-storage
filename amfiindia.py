@@ -46,6 +46,7 @@ def build_cache_from_amfi():
 
     print("Building cache from amfi data...")
     try:
+        print(f"Fetching AMFI data from {AMFI_INDIA_URL} ...")
         response = requests.get(AMFI_INDIA_URL, timeout=10)
         if response.status_code != 200 or not response.text.strip():
             raise RuntimeError(f"Failed to fetch AMFI data. Status code: {response.status_code}")
