@@ -1,5 +1,5 @@
 # CoinMarketCap to GCP Storage
-This GCP App engine program gets market info from CoinMarketCap (on a schedule or on demand) and stores it to a GCP bucket, for access in other applications without going over the API limits.
+This GCP App engine program gets market info from CoinMarketCap (on a schedule or on demand) and stores it to a GCP bucket, for access in other applications without going over the API limits. Additionally, it also fetches mutual fund data from AMFI India and stores it in the same bucket.
 
 ## Requirements
 1. CoinMarketCap API (Free version is sufficient for making a request every 30 mins).

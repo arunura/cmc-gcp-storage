@@ -1,7 +1,6 @@
 from common import get_crypto_bucket
 import json
 import requests
-import sys
 
 AMFI_INDIA_URL = "https://www.amfiindia.com/spages/NAVAll.txt"
 #AMFI_INDIA_URL = "https://web.archive.org/web/20250911184638if_/https://www.amfiindia.com/spages/NAVAll.txt"
