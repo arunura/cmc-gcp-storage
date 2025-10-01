@@ -3,8 +3,8 @@ import json
 import requests
 import sys
 
-#AMFI_INDIA_URL = "https://www.amfiindia.com/spages/NAVAll.txt"
-AMFI_INDIA_URL = "https://web.archive.org/web/20250911184638if_/https://www.amfiindia.com/spages/NAVAll.txt"
+AMFI_INDIA_URL = "https://www.amfiindia.com/spages/NAVAll.txt"
+#AMFI_INDIA_URL = "https://web.archive.org/web/20250911184638if_/https://www.amfiindia.com/spages/NAVAll.txt"
 
 def process_and_upload_amfi_data(data, in_scope, bucket):
     lines = data.split("\n")
