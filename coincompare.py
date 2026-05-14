@@ -15,8 +15,12 @@ def build_cache_from_coincompare():
     for symbol in coins_list:
         symbol = symbol.upper()
         sym_data_obj = get_data_for_symbol(symbol)
-        sym_blob = bucket.blob('history/' + symbol + '.json')
-        sym_blob.upload_from_string(json.dumps(sym_data_obj, indent=4))
+        if sym_data_obj and len(sym_data_obj) > 0:
+            sym_blob = bucket.blob('history/' + symbol + '.json')
+            sym_blob.upload_from_string(json.dumps(sym_data_obj, indent=4))
+        else:
+            print("No data for symbol: " + symbol)
+            raise Exception("No data for symbol: " + symbol)
         time.sleep(0.1) # Chill, don't overload their API endpoint
 
 def get_data_for_symbol(symbol):
