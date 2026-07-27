@@ -56,7 +56,7 @@ def get_materialized_body(url: str):
             break
     
     if is_articles_dict_stale:
-        articles_blob.upload_from_string(json.dumps(articles_dict, indent=4))
+        articles_blob.upload_from_string(json.dumps(articles_dict, indent=4), content_type='application/json')
 
     modified_data = ET.tostring(rootEL, encoding='utf-8') #.decode('utf8')
     return (modified_data, 200, response_headers)

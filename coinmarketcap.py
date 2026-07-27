@@ -66,6 +66,6 @@ def build_cache_from_cmc():
     # upload new ath.json if needed
     if is_ath_stale:
         print('Uploaded new ath.json to GS')
-        ath_blob.upload_from_string(json.dumps(ath_dict, indent=4))
+        ath_blob.upload_from_string(json.dumps(ath_dict, indent=4), content_type='application/json')
 
     return len(results_array)
