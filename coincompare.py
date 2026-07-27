@@ -61,7 +61,7 @@ def build_cache_from_coincompare():
             history.pop(0)
             
         # Upload updated history
-        sym_blob.upload_from_string(json.dumps(history, indent=4))
+        sym_blob.upload_from_string(json.dumps(history, indent=4), content_type='application/json')
         print(f"Updated history for {symbol} with price {current_price} (length: {len(history)})")
 
 
